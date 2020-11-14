@@ -7,6 +7,22 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Math Skills"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.help),
+            tooltip: "Help",
+            onPressed: () {
+              Navigator.of(context).pushNamed("/help");
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.info),
+            tooltip: "About",
+            onPressed: () {
+              Navigator.of(context).pushNamed("/about");
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(

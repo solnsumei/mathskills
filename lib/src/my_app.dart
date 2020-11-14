@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ui/screens/home_page.dart';
+import 'ui/screens/help_page.dart';
+import 'ui/screens/about_page.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -10,7 +12,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      routes: {
+        "/": (context) => HomePage(),
+        "/help": (context) => HelpPage(),
+        "/about": (context) => AboutPage(),
+      },
     );
   }
 }
