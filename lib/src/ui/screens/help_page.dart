@@ -22,7 +22,8 @@ class HelpPage extends StatelessWidget {
         itemCount: INSTRUCTIONS.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            subtitle: Text("${index + 1} - ${INSTRUCTIONS[index]}"),
+            title: Text("Step ${index + 1}"),
+            subtitle: Text(INSTRUCTIONS[index]),
           );
         },
       ),
