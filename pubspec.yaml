@@ -31,7 +31,6 @@ dependencies:
   shared_preferences: ^0.5.12+4
   share: '>=0.6.5+4 <2.0.0'
   provider: ^4.3.2+2
-  trotter: ^1.2.0
 
 dev_dependencies:
   flutter_test:

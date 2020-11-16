@@ -28,6 +28,8 @@ class GameProvider with ChangeNotifier {
 
     _selectedNumbers.add(num);
     _isAnswerCorrect = null;
+
+    notifyListeners();
   }
 
   void removeSelectedNumber(int num) {
@@ -56,11 +58,12 @@ class GameProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void acceptAnswer() {
+  String acceptAnswer() {
     _usedNumbers.addAll(_selectedNumbers);
     reload();
 
     notifyListeners();
+    return checkGameStatus();
   }
 
   void redraw() {
@@ -74,21 +77,21 @@ class GameProvider with ChangeNotifier {
 
   bool possibleSolutions() {
     final List<int> possibleNumbers = (numList.toSet()
-        .difference(_selectedNumbers.toSet())).toList();
+        .difference(_usedNumbers.toSet())).toList();
 
     return hasPossibleCombinations(possibleNumbers, _randomStars);
   }
 
-  String gameStatus() {
+  String checkGameStatus() {
     if (usedNumbers.length == 9) {
-      return "Hurray, you won!";
+      return WINNING_TEXT;
     }
 
     if (_redraws == 0 && !possibleSolutions()) {
-      return "Game Over, you lose!";
+      return GAME_OVER_TEXT;
     }
 
-    return "Game Over, you lose!";
+    return null;
   }
 
   void restart() {
