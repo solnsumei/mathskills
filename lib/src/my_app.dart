@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'core/providers/game_provider.dart';
+import 'core/core.dart';
 import 'ui/screens/home_page.dart';
 import 'ui/screens/help_page.dart';
 import 'ui/screens/about_page.dart';

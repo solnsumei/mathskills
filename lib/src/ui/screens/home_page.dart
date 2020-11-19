@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../core/providers/game_provider.dart';
 import '../widgets/widgets.dart';
+import '../../core/core.dart';
 import 'result_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,9 @@ class HomePage extends StatelessWidget {
         Icon(Icons.wine_bar, color: Colors.purple, size: 58.0));
   }
 
-  Future<void> checkGameStatus(BuildContext context, GameProvider model) async {
+  Future<void> checkGameStatus(BuildContext context,
+      GameProvider model) async {
+
     final resultText = model.checkGameStatus();
 
     if (resultText != null) {
@@ -31,24 +34,30 @@ class HomePage extends StatelessWidget {
     await checkGameStatus(context, model);
   }
 
+  void navigateToPage(BuildContext context,
+      String widgetName) async {
+
+    await Navigator.of(context).pushNamed(widgetName);
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("PLAY NINE"),
         actions: [
           IconButton(
-            icon: Icon(Icons.help),
-            tooltip: "Help",
+            icon: Text("Help"),
             onPressed: () {
-              Navigator.of(context).pushNamed("/help");
+              navigateToPage(context, "/help");
             },
           ),
           IconButton(
             icon: Icon(Icons.info),
             tooltip: "About",
             onPressed: () {
-              Navigator.of(context).pushNamed("/about");
+              navigateToPage(context, "/about");
             },
           ),
         ],
@@ -74,8 +83,9 @@ class HomePage extends StatelessWidget {
                     Button(checkGameStatus),
                     Positioned(
                       right: 12.0,
-                      top: 12.0,
+                      top: 10.0,
                       child: ActionChip(
+                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                         avatar: CircleAvatar(
                           child: Text("${model.redraws}"),
                         ),
@@ -115,3 +125,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
