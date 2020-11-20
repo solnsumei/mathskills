@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/core.dart';
-import 'ui/screens/home_page.dart';
+import 'ui/screens/game_page.dart';
 import 'ui/screens/help_page.dart';
 import 'ui/screens/about_page.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
         routes: {
-          "/": (context) => HomePage(),
+          "/": (context) => GamePage(),
           "/help": (context) => HelpPage(),
           "/about": (context) => AboutPage(),
         },

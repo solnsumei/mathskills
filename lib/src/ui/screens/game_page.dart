@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mathskills/src/ui/constants.dart';
 import 'package:provider/provider.dart';
 import '../widgets/widgets.dart';
 import '../../core/core.dart';
 import 'result_page.dart';
 
-class HomePage extends StatelessWidget {
+class GamePage extends StatelessWidget {
 
   getRandomStarList(int number) {
     return List<Icon>.generate(number, (index) =>
@@ -35,23 +36,23 @@ class HomePage extends StatelessWidget {
   }
 
   void navigateToPage(BuildContext context,
-      String widgetName) async {
+      String widgetName) {
 
-    await Navigator.of(context).pushNamed(widgetName);
+      Navigator.pushNamed(context, widgetName);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("PLAY NINE"),
         actions: [
-          IconButton(
-            icon: Text("Help"),
+          OutlineButton(
+            child: Text("How to Play", style: TextStyle(fontSize: 15.0,)),
             onPressed: () {
               navigateToPage(context, "/help");
             },
+            borderSide: BorderSide.none,
           ),
           IconButton(
             icon: Icon(Icons.info),

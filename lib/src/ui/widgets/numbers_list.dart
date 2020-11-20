@@ -30,6 +30,7 @@ class NumbersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.maxFinite,
       decoration: BoxDecoration(
         color: Colors.orange,
         borderRadius: BorderRadius.only(
@@ -38,6 +39,7 @@ class NumbersList extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),

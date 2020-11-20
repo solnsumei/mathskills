@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 const kBottomContainerHeight = 70.0;
 const kActiveCardColor = const Color(0xFF1D1E33);
@@ -35,14 +34,3 @@ const kGameLostTextStyle = TextStyle(
   fontSize: 26.0,
   fontWeight: FontWeight.bold,
 );
-
-
-double defaultVerticalSpacing(BuildContext context) => MediaQuery.of(context).size.height * 0.01;
-
-double defaultVerticalMargin(BuildContext context) => Theme.of(context).platform == TargetPlatform.iOS
-    ? defaultVerticalSpacing(context) * 1.5 : defaultVerticalSpacing(context) * 1.1;
-
-double defaultHorizontalSpacing(BuildContext context) => MediaQuery.of(context).size.width * 0.01;
-
-double defaultHorizontalMargin(BuildContext context) => Theme.of(context).platform == TargetPlatform.iOS
-    ? defaultHorizontalSpacing(context) * 1.5 : defaultHorizontalSpacing(context) * 1.1;

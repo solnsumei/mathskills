@@ -1,6 +1,5 @@
 // Helper function to check possible combinations
 bool hasPossibleCombinations(arr, n) {
-
   if (arr.contains(n)) {
     return true;
   }
