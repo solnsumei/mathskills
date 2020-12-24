@@ -33,10 +33,10 @@ class NumbersList extends StatelessWidget {
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: Colors.orange,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
-        ),
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(30.0),
+        //   topRight: Radius.circular(30.0),
+        // ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

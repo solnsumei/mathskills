@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:mathskills/src/ui/constants.dart';
 import 'package:provider/provider.dart';
 import '../widgets/widgets.dart';
 import '../../core/core.dart';
@@ -9,9 +9,9 @@ import 'result_page.dart';
 
 class GamePage extends StatelessWidget {
 
-  getRandomStarList(int number) {
-    return List<Icon>.generate(number, (index) =>
-        Icon(Icons.wine_bar, color: Colors.purple, size: 58.0));
+  getRandomStarList(GameProvider model) {
+    return List<Icon>.generate(model.randomStars, (index) =>
+        Icon(model.getIconData, color: Colors.purple, size: 58.0));
   }
 
   Future<void> checkGameStatus(BuildContext context,
@@ -73,7 +73,7 @@ class GamePage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
                     child: Wrap(
                       spacing: 8.0,
-                      children: getRandomStarList(model.randomStars),
+                      children: getRandomStarList(model),
                       alignment: WrapAlignment.center,
                     ),
                   ),

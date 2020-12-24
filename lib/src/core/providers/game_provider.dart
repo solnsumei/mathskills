@@ -7,17 +7,31 @@ import '../utils/helpers.dart';
 
 class GameProvider with ChangeNotifier {
   final List<int> numList = List<int>.generate(9, (index) => index + 1);
+
+  final List<IconData> _iconsList = [
+    Icons.school,
+    Icons.agriculture,
+    Icons.phone_android,
+    Icons.add_alert_outlined,
+    Icons.wine_bar_outlined,
+    Icons.bedtime_outlined,
+    Icons.beach_access,
+    Icons.add_a_photo,
+  ];
+
   List<int> _selectedNumbers = [];
   List<int> _usedNumbers = [];
   int _redraws = NO_OF_REDRAWS;
   int _randomStars;
   bool _isAnswerCorrect;
+  int _randomIconNum;
 
   List<int> get selectedNumbers => _selectedNumbers;
   List<int> get usedNumbers => _usedNumbers;
   int get redraws => _redraws;
   int get randomStars => _randomStars;
   bool get isAnswerCorrect => _isAnswerCorrect;
+  IconData get getIconData => _iconsList[_randomIconNum];
 
   GameProvider() {
     _randomStars = getRandomStars();
@@ -42,6 +56,7 @@ class GameProvider with ChangeNotifier {
   }
 
   int getRandomStars() {
+    _randomIconNum = Random().nextInt(_iconsList.length);
     return Random().nextInt(9) + 1;
   }
 
