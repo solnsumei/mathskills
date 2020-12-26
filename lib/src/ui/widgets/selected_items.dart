@@ -3,7 +3,7 @@ import 'rounded_button.dart';
 
 
 class SelectedItems extends StatelessWidget {
-  final List<int> selectedItems;
+  final Set<int> selectedItems;
   final Function onItemClicked;
 
   SelectedItems({@required this.selectedItems, @required this.onItemClicked});

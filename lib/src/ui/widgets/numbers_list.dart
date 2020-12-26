@@ -6,8 +6,8 @@ import 'rounded_button.dart';
 
 class NumbersList extends StatelessWidget {
   final List<int> numList;
-  final List<int> selectedNumbers;
-  final List<int> usedNumbers;
+  final Set<int> selectedNumbers;
+  final Set<int> usedNumbers;
   final Function onItemPressed;
 
   NumbersList({

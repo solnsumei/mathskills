@@ -10,31 +10,35 @@ class GameProvider with ChangeNotifier {
 
   final List<IconData> _iconsList = [
     Icons.school,
-    Icons.agriculture,
-    Icons.phone_android,
+    Icons.accessible_sharp,
     Icons.add_alert_outlined,
     Icons.wine_bar_outlined,
     Icons.bedtime_outlined,
     Icons.beach_access,
-    Icons.add_a_photo,
   ];
 
-  List<int> _selectedNumbers = [];
-  List<int> _usedNumbers = [];
+  Set<int> _selectedNumbers = {};
+  Set<int> _usedNumbers = {};
   int _redraws = NO_OF_REDRAWS;
   int _randomStars;
   bool _isAnswerCorrect;
   int _randomIconNum;
+  int _counter = 60;
 
-  List<int> get selectedNumbers => _selectedNumbers;
-  List<int> get usedNumbers => _usedNumbers;
+  Set<int> get selectedNumbers => _selectedNumbers;
+  Set<int> get usedNumbers => _usedNumbers;
   int get redraws => _redraws;
   int get randomStars => _randomStars;
   bool get isAnswerCorrect => _isAnswerCorrect;
   IconData get getIconData => _iconsList[_randomIconNum];
+  int get counter => _counter;
 
   GameProvider() {
     _randomStars = getRandomStars();
+  }
+
+  void resetCounter() {
+    _counter = 60;
   }
 
   void selectNumber(int num) {
@@ -92,7 +96,7 @@ class GameProvider with ChangeNotifier {
 
   bool possibleSolutions() {
     final List<int> possibleNumbers = (numList.toSet()
-        .difference(_usedNumbers.toSet())).toList();
+        .difference(_usedNumbers)).toList();
 
     return hasPossibleCombinations(possibleNumbers, _randomStars);
   }
@@ -102,7 +106,7 @@ class GameProvider with ChangeNotifier {
       return WINNING_TEXT;
     }
 
-    if (_redraws == 0 && !possibleSolutions()) {
+    if (_counter == 0 || (_redraws == 0 && !possibleSolutions())) {
       return GAME_OVER_TEXT;
     }
 
@@ -110,6 +114,7 @@ class GameProvider with ChangeNotifier {
   }
 
   void restart() {
+    resetCounter();
     _usedNumbers.clear();
     _redraws = NO_OF_REDRAWS;
     reload();

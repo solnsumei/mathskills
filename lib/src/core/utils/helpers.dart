@@ -1,5 +1,5 @@
 // Helper function to check possible combinations
-bool hasPossibleCombinations(arr, n) {
+bool hasPossibleCombinations(List<int> arr, int n) {
   if (arr.contains(n)) {
     return true;
   }
