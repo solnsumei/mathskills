@@ -27,6 +27,7 @@ class GameProvider with ChangeNotifier {
   int _counter = 60;
   Timer gameTimer;
   bool isGameOn = false;
+  bool isGamePaused = false;
 
   Set<int> get selectedNumbers => _selectedNumbers;
   Set<int> get usedNumbers => _usedNumbers;
@@ -133,6 +134,20 @@ class GameProvider with ChangeNotifier {
     return null;
   }
 
+  void pauseGame() {
+    stopCountdown();
+    isGamePaused = true;
+
+    notifyListeners();
+  }
+
+  void resumeGame() {
+    startCountdown();
+    isGamePaused = false;
+
+    notifyListeners();
+  }
+
   void stopCountdown() {
     if (gameTimer != null) {
       gameTimer.cancel();
@@ -154,6 +169,7 @@ class GameProvider with ChangeNotifier {
     reload();
     startCountdown();
     isGameOn = true;
+    isGamePaused = false;
 
     notifyListeners();
   }

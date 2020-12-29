@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/widgets.dart';
 import '../../core/core.dart';
-import 'result_page.dart';
+import '../widgets/result_modal.dart';
 
 class GamePage extends StatelessWidget {
 
@@ -74,8 +74,9 @@ class GamePage extends StatelessWidget {
                             ),
                             label: Icon(Icons.timer),
                             onPressed: () {
-
+                              model.pauseGame();
                             },
+                            tooltip: "Tap to pause game",
                           ),
                         ),
                         Button(),
@@ -117,14 +118,13 @@ class GamePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                !model.isGameOn ||  resultText != null
+                !model.isGameOn || resultText != null
                     ? Container(
                   child: Card(
                     color: Colors.black87,
-                    child: ResultPage(
+                    child: ResultModal(
                       model: model,
                       resultText: resultText,
-                      isGameOver: resultText != null,
                     ),
                   ),
                 ) : SizedBox(),

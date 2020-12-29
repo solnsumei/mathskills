@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import '../../core/core.dart';
 import '../constants.dart';
 
-class ResultPage extends StatelessWidget {
+class ResultModal extends StatelessWidget {
 
   final String resultText;
-  final bool isGameOver;
   final GameProvider model;
 
-  ResultPage({
+
+  ResultModal({
     @required this.model,
-    this.isGameOver = true,
     this.resultText,
   });
 
@@ -22,12 +21,32 @@ class ResultPage extends StatelessWidget {
     return kGameLostTextStyle;
   }
 
-  String getButtonText() {
+  String getButtonText([bool gamePaused = false]) {
+    if (gamePaused) {
+      return "Resume Game";
+    }
+
     if (resultText != null) {
       return "Play again";
     }
 
     return "Start Game";
+  }
+
+  Widget showGameStatusText(GameProvider model) {
+    if (model.isGamePaused) {
+      return Text("Game Paused",
+        style: kGameWonTextStyle,
+      );
+    }
+
+    if (resultText != null) {
+      return Text(resultText,
+        style: getTextStyle(),
+      );
+    }
+
+    return SizedBox();
   }
 
   @override
@@ -39,14 +58,16 @@ class ResultPage extends StatelessWidget {
         Container(),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: resultText != null ? Text(resultText,
-            style: getTextStyle(),
-          ) : SizedBox(),
+          child: showGameStatusText(model),
         ),
         SizedBox(height: 40.0),
         RaisedButton(
           onPressed: () {
-            model.startGame();
+            if (model.isGamePaused) {
+              model.resumeGame();
+            } else {
+              model.startGame();
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
