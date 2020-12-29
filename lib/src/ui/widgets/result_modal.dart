@@ -23,7 +23,7 @@ class ResultModal extends StatelessWidget {
 
   String getButtonText([bool gamePaused = false]) {
     if (gamePaused) {
-      return "Resume Game";
+      return "Resume";
     }
 
     if (resultText != null) {
@@ -71,7 +71,7 @@ class ResultModal extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(getButtonText(),
+            child: Text(getButtonText(model.isGamePaused),
               style: kLabelTextStyle,
             ),
           ),

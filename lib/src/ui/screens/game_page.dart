@@ -23,6 +23,8 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final game = GameProvider.of(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("PLAY NINE"),
@@ -30,6 +32,7 @@ class GamePage extends StatelessWidget {
           OutlineButton(
             child: Text("How to Play", style: TextStyle(fontSize: 15.0,)),
             onPressed: () {
+              game.pauseGame();
               navigateToPage(context, "/help");
             },
             borderSide: BorderSide.none,
@@ -38,6 +41,7 @@ class GamePage extends StatelessWidget {
             icon: Icon(Icons.info),
             tooltip: "About",
             onPressed: () {
+              game.pauseGame();
               navigateToPage(context, "/about");
             },
           ),
@@ -118,7 +122,7 @@ class GamePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                !model.isGameOn || resultText != null
+                model.isGamePaused || !model.isGameOn || resultText != null
                     ? Container(
                   child: Card(
                     color: Colors.black87,
