@@ -113,10 +113,21 @@ class HelpPage extends StatelessWidget {
               subtitle: Text(INSTRUCTIONS[12]),
             ),
             ListTile(
-              subtitle: Text(INSTRUCTIONS[13]),
+              subtitle: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                    child: Image(image: AssetImage(INSTRUCTIONS[14]), width: 50.0),
+                  ),
+                  Expanded(child: Text(INSTRUCTIONS[13]),),
+                ],
+              ),
             ),
             ListTile(
-              subtitle: Text(INSTRUCTIONS[14]),
+              subtitle: Text(INSTRUCTIONS[15]),
+            ),
+            ListTile(
+              subtitle: Text(INSTRUCTIONS[16]),
             ),
           ],
         ),
