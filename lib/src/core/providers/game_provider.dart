@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,8 @@ class GameProvider with ChangeNotifier {
   bool _isAnswerCorrect;
   int _randomIconNum;
   int _counter = 60;
+  Timer gameTimer;
+  bool isGameOn = false;
 
   Set<int> get selectedNumbers => _selectedNumbers;
   Set<int> get usedNumbers => _usedNumbers;
@@ -39,6 +42,19 @@ class GameProvider with ChangeNotifier {
 
   void resetCounter() {
     _counter = 60;
+  }
+
+  Timer setTimer(int counter) {
+    return Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      if (_counter > 0) {
+        _counter--;
+        notifyListeners();
+      } else {
+        isGameOn = false;
+        notifyListeners();
+        timer.cancel();
+      }
+    });
   }
 
   void selectNumber(int num) {
@@ -103,21 +119,41 @@ class GameProvider with ChangeNotifier {
 
   String checkGameStatus() {
     if (usedNumbers.length == 9) {
+      stopCountdown();
+      isGameOn = false;
       return WINNING_TEXT;
     }
 
     if (_counter == 0 || (_redraws == 0 && !possibleSolutions())) {
+      isGameOn = false;
+      stopCountdown();
       return GAME_OVER_TEXT;
     }
 
     return null;
   }
 
-  void restart() {
-    resetCounter();
+  void stopCountdown() {
+    if (gameTimer != null) {
+      gameTimer.cancel();
+    }
+  }
+
+  void startCountdown() {
+    if (gameTimer != null) {
+      gameTimer.cancel();
+    }
+
+    gameTimer = setTimer(_counter);
+  }
+
+  void startGame() {
     _usedNumbers.clear();
     _redraws = NO_OF_REDRAWS;
+    resetCounter();
     reload();
+    startCountdown();
+    isGameOn = true;
 
     notifyListeners();
   }

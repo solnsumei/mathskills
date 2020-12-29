@@ -5,11 +5,17 @@ import '../constants.dart';
 class ResultPage extends StatelessWidget {
 
   final String resultText;
+  final bool isGameOver;
+  final GameProvider model;
 
-  ResultPage(this.resultText);
+  ResultPage({
+    @required this.model,
+    this.isGameOver = true,
+    this.resultText,
+  });
 
   TextStyle getTextStyle() {
-    if (resultText == WINNING_TEXT) {
+    if (resultText == null || resultText == WINNING_TEXT) {
       return kGameWonTextStyle;
     }
 
@@ -17,46 +23,44 @@ class ResultPage extends StatelessWidget {
   }
 
   String getButtonText() {
-    if (resultText == WINNING_TEXT) {
+    if (resultText != null) {
       return "Play again";
     }
 
-    return "Try again";
+    return "Start Game";
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(resultText,
-                style: getTextStyle(),
-              ),
-            ),
-            SizedBox(height: 40.0),
-            RaisedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(getButtonText(),
-                  style: kLabelTextStyle,
-                ),
-              ),
-              color: kActiveCardColor,
-              textColor: Colors.white,
-              shape: StadiumBorder(),
-            )
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(resultText != null
+              ? resultText
+              : "Welcome",
+            style: getTextStyle(),
+          ),
         ),
-      ),
+        SizedBox(height: 40.0),
+        RaisedButton(
+          onPressed: () {
+            model.startGame();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(getButtonText(),
+              style: kLabelTextStyle,
+            ),
+          ),
+          color: kActiveCardColor,
+          textColor: Colors.white,
+          shape: StadiumBorder(),
+        )
+      ],
     );
   }
 }

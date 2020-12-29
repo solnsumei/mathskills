@@ -21,4 +21,4 @@ const TEXT_CONTENT = "Select appropriate answer or answer combination from the b
 
 const WINNING_TEXT = "Hurray, you won!";
 
-const GAME_OVER_TEXT = "Game Over, you lost!";
+const GAME_OVER_TEXT = "Game Over!";

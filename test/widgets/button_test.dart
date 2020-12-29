@@ -16,7 +16,7 @@ Widget createButton(GameProvider gameProvider) {
       return gameProvider;
     },
     child: MaterialApp(
-      home: Button(checkGameStatus),
+      home: Button(),
     ),
   );
 }

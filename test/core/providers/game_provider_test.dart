@@ -43,14 +43,14 @@ void main() {
       expect(gameProvider.selectedNumbers.contains(numberToAdd), true);
       gameProvider.checkAnswer();
       expect(gameProvider.isAnswerCorrect, false);
-      gameProvider.restart();
+      gameProvider.startGame();
     });
 
     test('isAnswerCorrect should be true when check answer is called', () {
       gameProvider.selectNumber(gameProvider.randomStars);
       gameProvider.checkAnswer();
       expect(gameProvider.isAnswerCorrect, true);
-      gameProvider.restart();
+      gameProvider.startGame();
     });
 
     test('acceptAnswer method should add selectedNumbers to usedNumbers list', () {
@@ -59,20 +59,20 @@ void main() {
       gameProvider.acceptAnswer();
       expect(gameProvider.selectedNumbers.length, equals(0));
       expect(gameProvider.usedNumbers.length, greaterThanOrEqualTo(1));
-      gameProvider.restart();
+      gameProvider.startGame();
     });
 
     test('Redraw method should decrement number of redraws', () {
       expect(gameProvider.redraws, equals(5));
       gameProvider.redraw();
       expect(gameProvider.redraws, equals(4));
-      gameProvider.restart();
+      gameProvider.startGame();
     });
 
     test('Running possible solutions should return true', () {
       gameProvider.selectNumber(gameProvider.randomStars);
       expect(gameProvider.possibleSolutions(), true);
-      gameProvider.restart();
+      gameProvider.startGame();
     });
   });
 }

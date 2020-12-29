@@ -5,10 +5,6 @@ import '../constants.dart';
 
 class Button extends StatelessWidget {
 
-  final Function checkGameStatus;
-
-  Button(this.checkGameStatus);
-
   Color getFillColor(GameProvider model) {
     if (model.isAnswerCorrect != null) {
       return model.isAnswerCorrect ? Colors.green : Colors.red;
@@ -38,10 +34,9 @@ class Button extends StatelessWidget {
     );
   }
 
-  void checkAndSelectAnswer(BuildContext context, GameProvider model) async {
+  void checkAndSelectAnswer(BuildContext context, GameProvider model) {
     if (model.isAnswerCorrect != null && model.isAnswerCorrect) {
       model.acceptAnswer();
-      await checkGameStatus(context, model);
     } else {
       model.checkAnswer();
     }
