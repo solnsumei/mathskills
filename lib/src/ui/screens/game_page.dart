@@ -47,7 +47,6 @@ class GamePage extends StatelessWidget {
         child: Consumer<GameProvider>(
           builder: (context, model, _) {
             final resultText = model.checkGameStatus();
-
             return Stack(
               children: [
                 Column(
@@ -68,21 +67,15 @@ class GamePage extends StatelessWidget {
                         Positioned(
                           left: 12.0,
                           top: 10.0,
-                          child: RawChip(
-                            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
-                            label: SizedBox(
-                              width: 23.0,
-                              child: Text("${model.counter < 10 ? "0" : ''}${model.counter}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16.0,
-                                ),
-                              ),
+                          child: ActionChip(
+                            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                            avatar: CircleAvatar(
+                              child: Text("${model.counter < 10 ? "0" : ''}${model.counter}"),
                             ),
-                            avatar: Padding(
-                              padding: const EdgeInsets.only(left: 4.0),
-                              child: Icon(Icons.timer, size: 20.0),
-                            ),
+                            label: Icon(Icons.timer),
+                            onPressed: () {
+
+                            },
                           ),
                         ),
                         Button(),
