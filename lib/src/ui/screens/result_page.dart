@@ -39,11 +39,9 @@ class ResultPage extends StatelessWidget {
         Container(),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(resultText != null
-              ? resultText
-              : "Welcome",
+          child: resultText != null ? Text(resultText,
             style: getTextStyle(),
-          ),
+          ) : SizedBox(),
         ),
         SizedBox(height: 40.0),
         RaisedButton(
