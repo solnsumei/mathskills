@@ -14,7 +14,7 @@ const List<String> INSTRUCTIONS = [
   "Repeat the previous steps until you have selected all the numbers from the numbers frame",
   "You can pause the game by pressing the timer button",
   "images/timer.png",
-  "You win the game when you successfully use all the numbers and you lose the game when you have numbers left unused after exhausting the redraws",
+  "You win the game when you successfully use all the numbers and you lose the game when the timer reaches 0 or when you have numbers left unused after exhausting the redraws",
   "When the game ends, either win or lose, click on the try again button to start a new game session. Have fun!"
 ];
 
