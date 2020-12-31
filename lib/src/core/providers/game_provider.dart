@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hive/hive.dart';
 
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -18,6 +19,7 @@ class GameProvider with ChangeNotifier {
     Icons.beach_access,
   ];
 
+  final _box = Hive.box(SCORES_BOX);
   Set<int> _selectedNumbers = {};
   Set<int> _usedNumbers = {};
   int _redraws = NO_OF_REDRAWS;

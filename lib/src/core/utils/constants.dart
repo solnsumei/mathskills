@@ -1,3 +1,8 @@
+const SCORES_BOX = "scoresBox";
+const BEST_TIME = "bestWinTime";
+const WINS = "wins";
+const GAMES_PLAYED = "gamesPlayed";
+
 const List<String> INSTRUCTIONS = [
   "Select one or more numbers from the numbers frame that will sum up to the number of items displayed at the top",
   "Click on the",
