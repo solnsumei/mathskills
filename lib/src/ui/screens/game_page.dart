@@ -51,10 +51,38 @@ class GamePage extends StatelessWidget {
         child: Consumer<GameProvider>(
           builder: (context, model, _) {
             final resultText = model.checkGameStatus();
+            final scores = model.scores;
             return Stack(
               children: [
                 Column(
                   children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                      color: Colors.white12,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Best Time:'),
+                          SizedBox(width: 2.0),
+                          Text('${scores[BEST_TIME] != null ? (scores[BEST_TIME]).toString() + ' secs' :  '--'}',
+                            style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          SizedBox(width: 8.0),
+                          Text('Wins:'),
+                          SizedBox(width: 2.0),
+                          Text('${scores[WINS]}/${scores[GAMES_PLAYED]}',
+                            style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),

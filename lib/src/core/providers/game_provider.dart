@@ -38,6 +38,9 @@ class GameProvider with ChangeNotifier {
   bool get isAnswerCorrect => _isAnswerCorrect;
   IconData get getIconData => _iconsList[_randomIconNum];
   int get counter => _counter;
+  Map<String, dynamic> get scores {
+    return fetchScores();
+  }
 
   GameProvider() {
     _randomStars = getRandomStars();
@@ -49,10 +52,14 @@ class GameProvider with ChangeNotifier {
 
   Map<String, dynamic> fetchScores() {
     return {
-      BEST_TIME: _box.get(BEST_TIME, defaultValue: 0),
+      BEST_TIME: _box.get(BEST_TIME),
       WINS: _box.get(WINS, defaultValue: 0),
       GAMES_PLAYED: _box.get(GAMES_PLAYED, defaultValue: 0)
     };
+  }
+
+  void saveScores (Map<String, dynamic> score) {
+    _box.putAll(score);
   }
 
   Timer setTimer(int counter) {
@@ -132,12 +139,34 @@ class GameProvider with ChangeNotifier {
     if (usedNumbers.length == 9) {
       stopCountdown();
       isGameOn = false;
+
+      final score = {
+        WINS: scores[WINS] + 1,
+        GAMES_PLAYED: scores[GAMES_PLAYED] + 1,
+      };
+
+      int bestTime = scores[BEST_TIME] ?? 60;
+      int timePlayed = 60 - _counter;
+
+      if (timePlayed < bestTime) {
+        score[BEST_TIME] = bestTime;
+      }
+
+      saveScores(score);
+
       return WINNING_TEXT;
     }
 
     if (_counter == 0 || (_redraws == 0 && !possibleSolutions())) {
       isGameOn = false;
       stopCountdown();
+
+      final score = {
+        GAMES_PLAYED: scores[GAMES_PLAYED] + 1,
+      };
+
+      saveScores(score);
+
       return GAME_OVER_TEXT;
     }
 

@@ -72,11 +72,10 @@ class ResultModal extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(getButtonText(model.isGamePaused),
-              style: kLabelTextStyle,
+              style: kLabelTextStyle.copyWith(color: Colors.orange[100]),
             ),
           ),
-          color: kActiveCardColor,
-          textColor: Colors.white,
+          color: Colors.orange,
           shape: StadiumBorder(),
         )
       ],
