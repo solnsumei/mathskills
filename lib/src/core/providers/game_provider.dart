@@ -47,6 +47,14 @@ class GameProvider with ChangeNotifier {
     _counter = 60;
   }
 
+  Map<String, dynamic> fetchScores() {
+    return {
+      BEST_TIME: _box.get(BEST_TIME, defaultValue: 0),
+      WINS: _box.get(WINS, defaultValue: 0),
+      GAMES_PLAYED: _box.get(GAMES_PLAYED, defaultValue: 0)
+    };
+  }
+
   Timer setTimer(int counter) {
     return Timer.periodic(Duration(seconds: 1), (Timer timer) {
       if (_counter > 0) {
