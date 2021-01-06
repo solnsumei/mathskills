@@ -153,7 +153,7 @@ class GameProvider with ChangeNotifier {
       int timePlayed = 60 - _counter;
 
       if (timePlayed < bestTime) {
-        score[BEST_TIME] = bestTime;
+        score[BEST_TIME] = timePlayed;
       }
 
       saveScores(score);
