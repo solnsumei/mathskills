@@ -136,6 +136,10 @@ class GameProvider with ChangeNotifier {
   }
 
   String checkGameStatus() {
+    if (!isGameOn) {
+      return null;
+    }
+
     if (usedNumbers.length == 9) {
       stopCountdown();
       isGameOn = false;
